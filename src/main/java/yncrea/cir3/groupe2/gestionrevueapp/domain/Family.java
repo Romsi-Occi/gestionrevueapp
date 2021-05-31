@@ -1,8 +1,8 @@
-package yncrea.cir3.groupe2.gestionrevueapp.domain.security;
+
+package yncrea.cir3.groupe2.gestionrevueapp.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import yncrea.cir3.groupe2.gestionrevueapp.domain.ControlPoint_template;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +21,6 @@ public class Family {
     @Column(length = 100, nullable = false)
     private String title;
 
-    @OneToMany
-    private List<ControlPoint_template> points;
+    @OneToMany(mappedBy = "parent_family", cascade = CascadeType.REMOVE)
+    private List<ControlPoint_template> points_template_family;
 }
