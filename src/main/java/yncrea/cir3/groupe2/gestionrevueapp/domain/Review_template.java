@@ -2,7 +2,6 @@ package yncrea.cir3.groupe2.gestionrevueapp.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import yncrea.cir3.groupe2.gestionrevueapp.domain.security.Family;
 
 import javax.persistence.*;
 import java.util.List;

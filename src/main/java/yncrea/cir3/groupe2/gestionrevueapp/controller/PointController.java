@@ -1,73 +1,79 @@
 package yncrea.cir3.groupe2.gestionrevueapp.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import yncrea.cir3.groupe2.gestionrevueapp.domain.ControlPoint;
 import yncrea.cir3.groupe2.gestionrevueapp.domain.Projet;
+import yncrea.cir3.groupe2.gestionrevueapp.form.ControlPointForm;
 import yncrea.cir3.groupe2.gestionrevueapp.form.ProjetForm;
-import yncrea.cir3.groupe2.gestionrevueapp.repository.ProjetRepository;
+import yncrea.cir3.groupe2.gestionrevueapp.repository.PointRepository;
+import yncrea.cir3.groupe2.gestionrevueapp.repository.ReviewRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Controller
-@RequestMapping("/projet")
-public class ProjetController {
+@RequestMapping("/point")
+public class PointController {
 
     @Autowired
-    private ProjetRepository projet;
+    private ReviewRepository reviews;
 
-    @GetMapping({"/","/list"})
-    public String list(Model model)
-    {
-        model.addAttribute("projet", projet.findAll());
-        return "projet/list";
+    @Autowired
+    private PointRepository points;
+
+    @GetMapping({"", "/", "/list"})
+    public String list(Model model) {
+        model.addAttribute("point", points.findAll());
+        return "point/list";
     }
 
     @GetMapping({"/add","edit/{id}"})
     public String add(@PathVariable(required = false) Long id, Model model)
     {
         ProjetForm form = new ProjetForm();
-        model.addAttribute("projet", form);
+        model.addAttribute("point", form);
 
         if (id!=null)
         {
-            Projet p = projet.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+            ControlPoint p = points.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
 
             form.setId(p.getId());
             form.setTitle(p.getTitle());
             form.setDescription(p.getDescription());
         }
 
-        return "projet/add";
+        return "point/add";
     }
 
     @PostMapping("/add")
-    public String addAction(@Valid @ModelAttribute("projet") ProjetForm form, BindingResult result, Model model) {
+    public String addAction(@Valid @ModelAttribute("point") ProjetForm form, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("projet", form);
-            return "projet/add";
+            model.addAttribute("point", form);
+            return "point/add";
         }
 
-        Projet p = new Projet();
+        ControlPoint p = new ControlPoint();
 
         if (form.getId() != null) {
-            p = projet.findById(form.getId()).orElseThrow(() -> new RuntimeException("Not found"));
+            p = points.findById(form.getId()).orElseThrow(() -> new RuntimeException("Not found"));
         }
 
         p.setTitle(form.getTitle());
-        projet.save(p);
+        points.save(p);
 
-        return "redirect:/projet/list";
+        return "redirect:/point/list";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(HttpServletRequest request, @PathVariable Long id) {
-        projet.deleteById(id);
-        String redirect ="/projet/list";
+        points.deleteById(id);
+        String redirect ="/point/list";
         String referer = request.getHeader("Referer");
         if (referer != null)
         {

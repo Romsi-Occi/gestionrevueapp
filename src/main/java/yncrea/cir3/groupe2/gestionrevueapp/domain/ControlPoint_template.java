@@ -25,4 +25,7 @@ public class ControlPoint_template {
 
     @ManyToOne
     private Review_template parent_template;
+
+    @ManyToOne
+    private Family parent_family;
 }
