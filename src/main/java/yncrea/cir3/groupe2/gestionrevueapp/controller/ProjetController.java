@@ -18,12 +18,12 @@ import javax.validation.Valid;
 public class ProjetController {
 
     @Autowired
-    private ProjetRepository project;
+    private ProjetRepository projet;
 
     @GetMapping({"/","/list"})
     public String list(Model model)
     {
-        model.addAttribute("projet", project.findAll());
+        model.addAttribute("projet", projet.findAll());
         return "projet/list";
     }
 
@@ -35,7 +35,7 @@ public class ProjetController {
 
         if (id!=null)
         {
-            Projet p = project.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+            Projet p = projet.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
 
             form.setId(p.getId());
             form.setTitle(p.getTitle());
@@ -55,18 +55,18 @@ public class ProjetController {
         Projet p = new Projet();
 
         if (form.getId() != null) {
-            p = project.findById(form.getId()).orElseThrow(() -> new RuntimeException("Not found"));
+            p = projet.findById(form.getId()).orElseThrow(() -> new RuntimeException("Not found"));
         }
 
         p.setTitle(form.getTitle());
-        project.save(p);
+        projet.save(p);
 
         return "redirect:/projet/list";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(HttpServletRequest request, @PathVariable Long id) {
-        project.deleteById(id);
+        projet.deleteById(id);
         String redirect ="/projet/list";
         String referer = request.getHeader("Referer");
         if (referer != null)
