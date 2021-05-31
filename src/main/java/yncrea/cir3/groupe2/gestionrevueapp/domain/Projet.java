@@ -25,5 +25,4 @@ public class Projet {
     @OneToMany
     private List<Review> reviews;
 
-
 }
