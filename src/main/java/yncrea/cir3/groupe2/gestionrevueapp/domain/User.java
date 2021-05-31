@@ -1,14 +1,16 @@
-package yncrea.cir3.groupe2.gestionrevueapp.domain.security;
+package yncrea.cir3.groupe2.gestionrevueapp.domain;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
+@Table(name = "\"user\"")
 public class User {
 
     @Id
@@ -40,4 +42,7 @@ public class User {
 
     @Column
     private Boolean banned;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Authority> authorities;
 }
