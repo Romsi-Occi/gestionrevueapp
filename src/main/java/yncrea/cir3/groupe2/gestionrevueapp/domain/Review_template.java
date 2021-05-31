@@ -24,6 +24,6 @@ public class Review_template {
     @ManyToMany
     private List<Family> families;
 
-    @OneToMany
+    @OneToMany(mappedBy = "parent_template", cascade = CascadeType.REMOVE)
     private List<ControlPoint_template> points_templates;
 }

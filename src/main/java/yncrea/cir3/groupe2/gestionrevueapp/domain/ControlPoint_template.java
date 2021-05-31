@@ -22,4 +22,7 @@ public class ControlPoint_template {
 
     @Column(length = 255)
     private String description;
+
+    @ManyToOne
+    private Review_template parent_template;
 }

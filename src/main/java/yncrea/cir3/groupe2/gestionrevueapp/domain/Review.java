@@ -18,6 +18,29 @@ public class Review extends Review_template {
     @Column
     private int noncompliances;
 
-    @OneToMany
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
     private List<ControlPoint> points;
+
+    @ManyToOne
+    private Projet parent_review;
+    
+    public void computeControlPoints()
+    {
+        setNoncompliances(0);
+        setHighest_CVSS(0);
+
+        for (ControlPoint point : points)
+        {
+            if(point.getCVSS() > getHighest_CVSS())
+            {
+                setHighest_CVSS(point.getCVSS());
+            }
+
+            if(point.getConform())
+            {
+                setNoncompliances(1 + getNoncompliances());
+            }
+
+        }
+    }
 }

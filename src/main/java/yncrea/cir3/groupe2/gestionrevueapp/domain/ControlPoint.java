@@ -25,5 +25,8 @@ public class ControlPoint extends ControlPoint_template {
     @Column
     private int CVSS;
 
+    @ManyToOne
+    private Review parent;
+
     public enum State {unchecked, checked, NA}
 }

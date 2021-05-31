@@ -22,7 +22,7 @@ public class Projet {
     @Column(length = 255)
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "parent_review", cascade = CascadeType.REMOVE)
     private List<Review> reviews;
 
 }
