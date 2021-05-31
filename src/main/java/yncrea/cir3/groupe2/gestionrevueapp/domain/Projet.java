@@ -21,5 +21,8 @@ public class Projet {
     @Column(length = 255)
     private String description;
 
+    @ManyToOne
+    private List<Review> reviews;
+
 
 }

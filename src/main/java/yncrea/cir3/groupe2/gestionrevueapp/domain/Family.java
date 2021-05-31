@@ -8,19 +8,16 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Review_template {
+public class Family {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_template")
-    @SequenceGenerator(name="review_template", sequenceName = "seq_review_template")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "family")
+    @SequenceGenerator(name="family", sequenceName = "seq_family")
     private Long id;
 
     @Column(length = 100, nullable = false)
-    private String Title;
-
-    @ManyToMany
-    private List<Family> families;
+    private String title;
 
     @ManyToOne
     private List<ControlPoint_template> points;
