@@ -25,5 +25,5 @@ public class Review_template {
     private List<Family> families;
 
     @OneToMany
-    private List<ControlPoint_template> points;
+    private List<ControlPoint_template> points_templates;
 }

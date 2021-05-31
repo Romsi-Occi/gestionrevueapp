@@ -18,6 +18,6 @@ public class Review extends Review_template {
     @Column
     private int noncompliances;
 
-    //@OneToMany
-    //private List<ControlPoint> points;
+    @OneToMany
+    private List<ControlPoint> points;
 }
