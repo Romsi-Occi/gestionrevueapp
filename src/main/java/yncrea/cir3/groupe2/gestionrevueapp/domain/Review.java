@@ -12,6 +12,11 @@ import java.util.List;
 @Entity
 public class Review extends Review_template {
 
+    @Id @Column
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review")
+    @SequenceGenerator(name="review", sequenceName = "seq_review")
+    private Long id;
+
     @Column
     private int highest_CVSS;
 

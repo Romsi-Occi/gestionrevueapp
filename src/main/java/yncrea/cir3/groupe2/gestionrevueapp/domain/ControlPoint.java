@@ -10,6 +10,11 @@ import javax.persistence.*;
 @Entity
 public class ControlPoint extends ControlPoint_template {
 
+    @Id @Column
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "controlpoint")
+    @SequenceGenerator(name="controlpoint", sequenceName = "seq_controlpoint")
+    private Long id;
+
     @Column(length = 255)
     private String commentary;
 

@@ -38,11 +38,15 @@ public class ReviewController {
 
         if (id!=null)
         {
-            Review p = reviews.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+            Review r = reviews.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
 
-            form.setId(p.getId());
-            form.setTitle(p.getTitle());
-            form.setDescription(p.getDescription());
+            form.setId(r.getId());
+            form.setTitle(r.getTitle());
+            form.setDescription(r.getDescription());
+            form.setHighest_CVSS(r.computeControlPoints());
+            form.setNoncompliances(r.computeControlPoints());
+            form.setParent_review(r.getParent());
+
         }
 
         return "projet/add";
@@ -55,14 +59,14 @@ public class ReviewController {
             return "projet/add";
         }
 
-        Review p = new Review();
+        Review r = new Review();
 
         if (form.getId() != null) {
-            p = reviews.findById(form.getId()).orElseThrow(() -> new RuntimeException("Not found"));
+            r = reviews.findById(form.getId()).orElseThrow(() -> new RuntimeException("Not found"));
         }
 
-        p.setTitle(form.getTitle());
-        reviews.save(p);
+        r.setTitle(form.getTitle());
+        reviews.save(r);
 
         return "redirect:/review/list";
     }

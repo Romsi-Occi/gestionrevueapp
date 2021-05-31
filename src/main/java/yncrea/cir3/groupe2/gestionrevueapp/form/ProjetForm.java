@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
 
 
 @Getter
@@ -15,4 +16,6 @@ public class ProjetForm {
     private String title;
 
     private String description;
+
+    private Set<Long> reviews;
 }
