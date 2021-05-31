@@ -1,0 +1,42 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:fragment="title">Gestion des produits</title>
+</head>
+<body>
+<div th:fragment="content">
+  <h1>Gestion des projets</h1>
+
+  <p>
+    <a th:href="@{/projet/add}" class="btn btn-secondary" role="button" aria-pressed="true">Ajouter un
+      projet</a>
+  </p>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Titre</th>
+      <th>Description</th>
+      <th>Edit</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="projet : ${projet}" th:object="${projet}">
+      <td th:text="*{id}">1</td>
+      <td th:text="*{title}">Titre</td>
+      <td th:text="*{description}">Description</td>
+      <td>
+        <a th:href="@{/projet/edit/{id}(id=*{id})}" class="btn btn-primary">
+          <i class="ri-edit-line"></i>
+        </a>
+        <a th:href="@{/projet/delete/{id}(id=*{id})}" class="btn btn-danger">
+          <i class="ri-delete-bin-line"></i>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:fragment="title">Accueil</title>
+</head>
+<body>
+<div th:fragment="content">
+  <h1 class="h3 mb-3 fw-normal">User fetch</h1>
+
+  <div>
+    <div class="mb-3 row">
+      <label for="user-id" class="col-sm-2 col-form-label">User ID : </label>
+      <div class="col-sm-10">
+        <input class="form-control" id="user-id" placeholder="User ID">
+      </div>
+    </div>
+    <div class="mb-3">
+      <button id="search-button" class="btn btn-primary">Search</button>
+    </div>
+  </div>
+
+  <div id="search-result"></div>
+
+  <script>
+    document.querySelector('#search-button').addEventListener('click', function () {
+      fetch('/api/users/' + document.querySelector('#user-id').value).then( function (response) {
+        return response.json();
+      }).then( function (user) {
+        document.querySelector('#search-result').innerText = user.email;
+      });
+    });
+
+  </script>
+</div>
+</body>
+</html>

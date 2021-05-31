@@ -8,14 +8,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Project {
+public class Projet {
 
     @Id @Column
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project")
     @SequenceGenerator(name="project", sequenceName = "seq_project")
     private Long id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String title;
 
     @Column(length = 255)

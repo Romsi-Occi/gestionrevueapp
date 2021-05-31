@@ -1,0 +1,42 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:fragment="title">Authentification</title>
+</head>
+<body>
+<div th:fragment="content">
+  <h1 class="h3 mb-3 fw-normal">Création de compte</h1>
+
+  <form method="post" th:action="@{/register}" th:object="${user}">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="email_ig">@</span>
+      <input type="email" class="form-control" th:field="*{email}" placeholder="Adresse email" aria-label="Adresse email" aria-describedby="email_ig" autocomplete="off">
+    </div>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email invalide</div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="username_ig"><i class="ri-user-line"></i></span>
+      <input type="text" class="form-control" th:field="*{username}" placeholder="Nom de l'utilisateur" aria-label="Nom de l'utilisateur" aria-describedby="username_ig" autocomplete="off">
+    </div>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Nom d'utilisateur invalide</div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="password_ig"><i class="ri-lock-line"></i></span>
+      <input type="password" class="form-control" th:field="*{password}" placeholder="Mot de passe" aria-label="Mot de passe" aria-describedby="password_ig" autocomplete="off">
+    </div>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Mot de passe invalide</div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="password2_ig"><i class="ri-lock-line"></i></span>
+      <input type="password" class="form-control" th:field="*{password2}" placeholder="Mot de passe (confirmation)" aria-label="Mot de passe (confirmation)" aria-describedby="password2_ig" autocomplete="off">
+    </div>
+    <div class="alert alert-danger" th:if="${passwordShouldMatch}">Les mots de passe doivent correspondre</div>
+
+    <button class="w-100 mt-1 btn btn-lg btn-primary" type="submit">
+      <i class="ri-user-add-line"></i>
+      Créer un compte
+    </button>
+  </form>
+</div>
+</body>
+</html>>

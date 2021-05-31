@@ -17,7 +17,7 @@ public class ControlPoint_template {
     @SequenceGenerator(name="controlpoint_template", sequenceName = "seq_controlpoint_template")
     private Long id;
 
-    @Id
+
     @Column
     private Long parent_id;
 

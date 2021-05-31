@@ -1,0 +1,43 @@
+<html th:replace="~{layout :: layout(title=~{::title}, content=~{::content}, links=~{::link})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:fragment="title">Authentification</title>
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div th:fragment="content">
+  <div th:if="${param.error}" class="alert alert-danger">
+    L'identifiant et le mot de passe sont invalides
+  </div>
+  <div th:if="${param.logout}" class="alert alert-success">
+    Vous avez été déconnecté
+  </div>
+
+  <main class="form-signin">
+    <form method="post" th:action="@{/login}">
+      <h1 class="h3 mb-3 fw-normal">Authentification</h1>
+      <label for="username" class="visually-hidden">Adresse email</label>
+      <input type="email" id="username" name="username" class="form-control" placeholder="Adresse email" autocomplete="off" required autofocus>
+
+      <label for="password" class="visually-hidden">Mot de passe</label>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" autocomplete="off" required>
+
+      <button class="w-100 btn btn-lg btn-primary" type="submit">
+        <i class="ri-login-circle-line"></i>
+        Se connecter
+      </button>
+    </form>
+
+    <hr />
+
+    <div>
+      <a class="w-100 btn btn-lg btn-primary" href="#" th:href="@{/register}">
+        <i class="ri-user-add-line"></i>
+        Créer un compte
+      </a>
+    </div>
+
+    <p class="mt-5 mb-3 text-muted">ISEN Toulon &copy; 2020-2021</p>
+  </main>
+</div>
+</body>
+</html>

@@ -16,7 +16,6 @@ public class ControlPoint {
     @SequenceGenerator(name="controlpoint", sequenceName = "seq_controlpoint")
     private Long id;
 
-    @Id
     @Column
     private Long review_id;
 

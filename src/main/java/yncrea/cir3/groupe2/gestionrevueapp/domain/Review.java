@@ -19,7 +19,7 @@ public class Review {
     @SequenceGenerator(name="review", sequenceName = "seq_review")
     private Long id;
 
-    @Id
+
     @Column
     private Long id_project;
 
@@ -35,9 +35,9 @@ public class Review {
     @Column
     private int noncompliances;
 
-    @ManyToMany
-    private ArrayList<Family> family;
+    //@ManyToMany
+    //private ArrayList<Family> family;
 
     @ManyToMany
-    private List<Review_template> model;
+    private List<Review_template> template;
 }

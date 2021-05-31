@@ -1,4 +1,4 @@
-package yncrea.cir3.groupe2.gestionrevueapp.domain;
+package yncrea.cir3.groupe2.gestionrevueapp.domain.security;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "authority")
 public class Authority implements GrantedAuthority {
     @Id @Column
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authority")
+    @SequenceGenerator(name="authority", sequenceName = "seq_authority")
     private Long id;
 
     private String authority;
