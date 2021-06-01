@@ -1,0 +1,23 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:fragment="title">Gestion des reviews</title>
+</head>
+<body>
+<div th:fragment="content">
+    <h1>Gestion des reviews</h1>
+    <form action="#" th:action="@{/review/add}" th:object="${review}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text" class="form-control" id="titre" placeholder="Titre de la review" th:field="*{title}">
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Invalide</div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" placeholder="Description de la review" th:field="*{description}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+</div>
