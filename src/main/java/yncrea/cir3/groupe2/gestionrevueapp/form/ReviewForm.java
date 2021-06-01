@@ -19,7 +19,6 @@ public class ReviewForm {
     @Size(min = 2, max = 100)
     private String title;
 
-    private String description;
 
     private int highest_CVSS;
 

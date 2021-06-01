@@ -17,6 +17,9 @@ public class Review extends Review_template {
     @SequenceGenerator(name="review", sequenceName = "seq_review")
     private Long id;
 
+    //@Column
+    //private String title;
+
     @Column
     private int highest_CVSS;
 

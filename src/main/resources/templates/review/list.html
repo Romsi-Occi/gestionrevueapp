@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <title th:fragment="title">Gestion des produits</title>
 </head>
 <body>
+<div th:fragment="content">
+  <h1>Gestion des reviews</h1>
 
+  <p>
+    <a th:href="@{/review/add}" class="btn btn-secondary" role="button" aria-pressed="true">Ajouter une
+      review</a>
+  </p>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Titre</th>
+      <th>Description</th>
+      <th>Edit</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="review : ${review}" th:object="${review}">
+      <td th:text="*{id}">1</td>
+      <td th:text="*{title}">Titre</td>
+      <td th:text="*{description}">Description</td>
+      <td th:text="*{highest_CVSS}">Description</td>
+      <td th:text="*{noncompliances}">Description</td>
+      <td>
+        <a th:href="@{/review/edit/{id}(id=*{id})}" class="btn btn-primary">
+          <i class="ri-edit-line"></i>
+        </a>
+        <a th:href="@{/review/delete/{id}(id=*{id})}" class="btn btn-danger">
+          <i class="ri-delete-bin-line"></i>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
